@@ -1,7 +1,9 @@
 from npc import NPC
 from biome import Biome
+from world import World
 from town_state import TownState
 from town import Town
+import random
 
 
 def parse_csv(npc_path: str, biome_path: str = None) -> dict[str, NPC]:
@@ -91,16 +93,15 @@ def main():
     check_data(npc_dict)
 
     # Random testing
-    town = Town(biome_dict["Ocean"])
-    town.add_resident(npc_dict["Angler"])
-    town.add_resident(npc_dict["Merchant"])
-    town.add_resident(npc_dict["Nurse"])
+    town1 = Town(biome_dict["Ocean"])
+    town2 = Town(biome_dict["Desert"])
+    town3 = Town(biome_dict["Forest"])
 
-    print(town.avg_multiplier)
-    print(town.state, "\n")
+    test_npcs = random.sample(list(npc_dict.values()), 10)
 
-    for resident in town.residents:
-        print(resident.name, resident.happiness)
+    test_world = World(test_npcs, [town1, town2, town3])
+    test_world.settle_npcs()
+    print(test_world)
 
 
 if __name__ == "__main__":

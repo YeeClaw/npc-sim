@@ -15,6 +15,10 @@ class Town:
     @property
     def avg_multiplier(self) -> float:
         return self._avg_multiplier
+    
+    @avg_multiplier.setter
+    def avg_multiplier(self, value: float) -> None:
+        self._avg_multiplier = value
 
     @property
     def state(self) -> str:
@@ -33,13 +37,27 @@ class Town:
 
 
     def add_resident(self, resident: NPC) -> None:
-        self._residents.append(resident)
-        self._avg_multiplier = self.calc_avg_multiplier()
+        self.residents.append(resident)
+        self.avg_multiplier, resident_happiness = self.calc_avg_multiplier()
+        for npc, multiplier in resident_happiness.items():
+            npc.happiness = multiplier
+
+    
+    def remove_resident(self, resident: NPC) -> None:
+        self.residents.remove(resident)
+        self.avg_multiplier, resident_happiness = self.calc_avg_multiplier()
+        for npc, multiplier in resident_happiness.items():
+            npc.happiness = multiplier
 
 
-    def calc_avg_multiplier(self) -> float:
+    def calc_avg_multiplier(self, potential_npc: NPC = None) -> float:
         # TODO: DRY violated. This smells!
-        if not self.residents:
+        if potential_npc:
+            calc_residents = self.residents + [potential_npc]
+        else:
+            calc_residents = self.residents
+
+        if not calc_residents:
             return 1.0
         
         # Loves, Likes, Dislikes, Hates
@@ -47,7 +65,9 @@ class Town:
         
         # Calculate the multiplier for each resident
         total_multiplier = 0.0
-        for resident in self.residents:
+        individual_multipliers = {}
+
+        for resident in calc_residents:
             resident_multiplier = 1.0
             # Find resident multiplier due to other residents
             for i, affinity in enumerate(resident.relationship_preferences):
@@ -58,7 +78,7 @@ class Town:
                 resident_multiplier *= self.calc_biome_multiplier(resident, affinity, mood_multipliers[i])
 
             # Apply the crowding/solitude bonus
-            if len(self.residents) <= 3:
+            if len(calc_residents) <= 3:
                 resident_multiplier *= 0.95
             else:
                 resident_multiplier *= 1.05
@@ -68,11 +88,11 @@ class Town:
                 resident_multiplier = 0.75
 
             resident_multiplier = round(resident_multiplier, 2)
-            resident.happiness = resident_multiplier
+            individual_multipliers[resident] = resident_multiplier
             total_multiplier += resident_multiplier
 
-        final_avg = total_multiplier / len(self.residents)
-        return round(final_avg, 3)  # Final multipliers are rounded to 2 decimal places
+        final_avg = total_multiplier / len(calc_residents)
+        return round(final_avg, 3), individual_multipliers  # Final multipliers are rounded to 2 decimal places
 
 
     def calc_relation_multiplier(self, resident: NPC, affinity: str, multiplier: float) -> float:
