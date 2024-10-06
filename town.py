@@ -57,6 +57,12 @@ class Town:
             for i, affinity in enumerate(resident.biome_preferences):
                 resident_multiplier *= self.calc_biome_multiplier(resident, affinity, mood_multipliers[i])
 
+            # Apply the crowding/solitude bonus
+            if len(self.residents) <= 3:
+                resident_multiplier *= 0.95
+            else:
+                resident_multiplier *= 1.05
+
             # Clamp the multiplier to 0.75 as per the Terraria wiki
             if resident_multiplier < 0.75:
                 resident_multiplier = 0.75
