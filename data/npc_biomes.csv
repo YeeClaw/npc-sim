@@ -1,0 +1,36 @@
+NPCs,Forest,Sub-surface,Desert,Ocean,Snow,Jungle,Hallow,Mushroom
+Guide,Likes,Neutral,Neutral,Dislikes,Neutral,Neutral,Neutral,Neutral
+Merchant,Likes,Neutral,Dislikes,Neutral,Neutral,Neutral,Neutral,Neutral
+Nurse,Neutral,Neutral,Neutral,Neutral,Dislikes,Neutral,Likes,Neutral
+Demolitionist,Neutral,Likes,Neutral,Dislikes,Neutral,Neutral,Neutral,Neutral
+Dye Trader,Dislikes,Neutral,Likes,Neutral,Neutral,Neutral,Neutral,Neutral
+Angler,Neutral,Neutral,Dislikes,Likes,Neutral,Neutral,Neutral,Neutral
+Zoologist,Likes,Neutral,Dislikes,Neutral,Neutral,Neutral,Neutral,Neutral
+Dryad,Neutral,Neutral,Dislikes,Neutral,Neutral,Likes,Neutral,Neutral
+Painter,Dislikes,Neutral,Neutral,Neutral,Neutral,Likes,Neutral,Neutral
+Golfer,Likes,Dislikes,Neutral,Neutral,Neutral,Neutral,Neutral,Neutral
+Arms Dealer,Neutral,Neutral,Likes,Neutral,Dislikes,Neutral,Neutral,Neutral
+Tavernkeep,Neutral,Neutral,Neutral,Neutral,Dislikes,Neutral,Likes,Neutral
+Stylsit,Neutral,Neutral,Neutral,Likes,Dislikes,Neutral,Neutral,Neutral
+Goblin Tinkerer,Neutral,Likes,Neutral,Neutral,Neutral,Dislikes,Neutral,Neutral
+Witch Doctor,Neutral,Neutral,Neutral,Neutral,Neutral,Likes,Dislikes,Neutral
+Clothier,Neutral,Likes,Neutral,Neutral,Neutral,Neutral,Dislikes,Neutral
+Mechanic,Neutral,Dislikes,Neutral,Neutral,Likes,Neutral,Neutral,Neutral
+Party Girl,Neutral,Dislikes,Neutral,Neutral,Neutral,Neutral,Likes,Neutral
+Wizard,Neutral,Neutral,Neutral,Dislikes,Neutral,Neutral,Likes,Neutral
+Tax Collector,Neutral,Neutral,Neutral,Neutral,Likes,Neutral,Dislikes,Neutral
+Truffle,Neutral,Neutral,Neutral,Neutral,Neutral,Neutral,Neutral,Likes
+Pirate,Neutral,Dislikes,Neutral,Likes,Neutral,Neutral,Neutral,Neutral
+Steampunker,Neutral,Neutral,Likes,Neutral,Neutral,Dislikes,Neutral,Neutral
+Cyborg,Neutral,Neutral,Neutral,Neutral,Likes,Dislikes,Neutral,Neutral
+Santa Claus,Neutral,Neutral,Hates,Neutral,Loves,Neutral,Neutral,Neutral
+Princess,Neutral,Neutral,Neutral,Neutral,Neutral,Neutral,Neutral,Neutral
+Automaton,Likes,Neutral,Dislikes,Neutral,Loves,Neutral,Hates,Neutral
+Oracle,Likes,Neutral,Neutral,Neutral,Dislikes,Neutral,Neutral,Neutral
+Jelly Princess,Likes,Neutral,Dislikes,Loves,Neutral,Neutral,Neutral,Neutral
+Jungle Tyrant,Neutral,Neutral,Neutral,Hates,Dislikes,Likes,Neutral,Loves
+Sea King,Neutral,Neutral,Dislikes,Likes,Neutral,Neutral,Neutral,Neutral
+Bandit,Neutral,Neutral,Likes,Neutral,Neutral,Dislikes,Neutral,Neutral
+Drunk Princess,Neutral,Hates,Dislikes,Likes,Neutral,Neutral,Loves,Neutral
+Archmage,Neutral,Neutral,Dislikes,Neutral,Likes,Neutral,Neutral,Neutral
+Brimstone Witch,Likes,Neutral,Neutral,Neutral,Neutral,Neutral,Neutral,Neutral
