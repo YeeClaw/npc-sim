@@ -5,6 +5,7 @@ from town import Town
 
 
 def parse_csv(npc_path: str, biome_path: str = None) -> dict[str, NPC]:
+    # TODO: clean this function
     with open(npc_path, 'r') as file:
         npc_lines = file.readlines()
 
@@ -14,6 +15,8 @@ def parse_csv(npc_path: str, biome_path: str = None) -> dict[str, NPC]:
 
     # Parse the data rows
     npc_dict = {}
+    biome_dict = {}
+
     for line in npc_lines[1:]:
         data = line.strip().split(',')
         npc_name = data[0]
@@ -42,13 +45,18 @@ def parse_csv(npc_path: str, biome_path: str = None) -> dict[str, NPC]:
         # Parse the data rows
         for line in biome_lines[1:]:
             data = line.strip().split(',')
-            for i, biome in enumerate(biomes):
+            for i, str_biome in enumerate(biomes):
                 i += 1
-                npc_dict[data[0]].add_preference(data[i].capitalize(), Biome(biome))
+                if str_biome not in biome_dict:
+                    # This check is needed to make sure we're not overriding existing biome objects with duplicates!
+                    biome_dict[str_biome] = Biome(str_biome)
+                biome = biome_dict[str_biome]
+
+                npc_dict[data[0]].add_preference(data[i].capitalize(), biome)
     else:
         print("No biome data provided!")
 
-    return npc_dict
+    return npc_dict, biome_dict
 
 
 def check_data(npc_list: dict[str, NPC]) -> None:
@@ -79,20 +87,20 @@ def check_data(npc_list: dict[str, NPC]) -> None:
 
 
 def main():
-    # npc_dict_no_biomes = parse_csv("data/npc_relationships.csv")
-    npc_dict_with_biomes = parse_csv("data/npc_relationships.csv", "data/npc_biomes.csv")
-    # check_data(npc_dict_no_biomes)
-    check_data(npc_dict_with_biomes)
-    # print(npc_dict_with_biomes)
+    npc_dict, biome_dict = parse_csv("data/npc_relationships.csv", "data/npc_biomes.csv")
+    check_data(npc_dict)
 
     # Random testing
-    town = Town()
-    town.add_resident(npc_dict_with_biomes["Guide"])
-    town.add_resident(npc_dict_with_biomes["Merchant"])
-    town.add_resident(npc_dict_with_biomes["Nurse"])
+    town = Town(biome_dict["Ocean"])
+    town.add_resident(npc_dict["Angler"])
+    town.add_resident(npc_dict["Merchant"])
+    town.add_resident(npc_dict["Nurse"])
 
     print(town.avg_multiplier)
-    print(town.state)
+    print(town.state, "\n")
+
+    for resident in town.residents:
+        print(resident.name, resident.happiness)
 
 
 if __name__ == "__main__":

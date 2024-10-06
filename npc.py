@@ -20,6 +20,14 @@ class NPC:
         {opinion: {npc_name: npc_object}}
         """
         return self._relationship_preferences
+    
+    @property
+    def happiness(self) -> float:
+        return self._happiness
+    
+    @happiness.setter
+    def happiness(self, value: float) -> None:
+        self._happiness = value
 
     def __init__(self, name: str):
         self._name = name
@@ -32,6 +40,7 @@ class NPC:
         }
         self._biome_preferences = copy.deepcopy(self._base_preferences)
         self._relationship_preferences = copy.deepcopy(self._base_preferences)
+        self._happiness = 1.0
 
     def add_preference(self, opinion: str, preferred_thing: object) -> None:
         if opinion == "Neutral":
